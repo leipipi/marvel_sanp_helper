@@ -9,7 +9,7 @@ url = "https://marvelsnapzone.com/locations/"
 response = requests.get(url)
 # soup = BeautifulSoup(response.content, "html.parser")
 
-with open("location_html.html", "r", encoding="utf-8") as f:
+with open("data/location_html.html", "r", encoding="utf-8") as f:
     html_content = f.read()
 soup = BeautifulSoup(html_content, "html.parser")
 

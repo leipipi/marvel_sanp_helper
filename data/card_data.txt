@@ -1,0 +1,12 @@
+agent 13 1 2
+america chavez 1 2
+angela 2 0
+cable 2 3
+devil dinosaur 5 3
+mantis 1 2
+moon girl 4 4
+nightcrawler 1 2
+quinjet 1 2
+sentinel 2 3
+the collector 2 2
+white queen 4 6

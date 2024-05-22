@@ -48,6 +48,39 @@ def find_and_click_continuous(window_name, filename, threshold=0.7, duration=10,
     return False
 
 
+def find_image_on_screen(image_path):
+    # 将屏幕截屏转换为OpenCV格式
+    screenshot = pyautogui.screenshot()
+    screen = np.array(screenshot)
+    screen = cv2.cvtColor(screen, cv2.COLOR_BGR2RGB)
+
+    # 读取模板图像
+    template = cv2.imread(image_path)
+    if template is None:
+        raise FileNotFoundError(f"指定的图像文件 {image_path} 未找到。")
+
+    # 进行模板匹配
+    result = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+
+    # 设置阈值，根据需求调节
+    threshold = 0.7
+    if max_val >= threshold:
+
+        # 计算图像中心位置
+        top_left = max_loc
+        h, w = template.shape[:2]
+        center_x = top_left[0] + w // 2
+        center_y = top_left[1] + h // 2
+
+        # 将鼠标移动到图像中心
+        pyautogui.moveTo(center_x, center_y)
+        print(f"找到匹配的图像{image_path}:{center_x}, {center_y}。")
+        return True
+    else:
+        print(f"未找到匹配的图像{image_path}。")
+        return False
+
 def find(window_name, filename, threshold=0.7, duration=10):
     # (窗口名称，图片文件全名，相似度阈值，检测时间，x坐标偏移，y坐标偏移)
     start_time = time.time()  # 记录开始时间
@@ -124,7 +157,8 @@ def find_and_click(filename, x_offset=0, y_offset=0, duration=5):
 
 
 def main():
-    print_mouse_position()
+    # print_mouse_position()
+    find_image_on_screen('image\location\asgard.png')
     pass
 
 
