@@ -14,7 +14,7 @@ def autosnap():
         gap(2)
         find_and_click_continuous('SNAP', 'snap-restart.png', threshold=0.7, duration=3)
         gap(2)
-        find_and_click_continuous('SNAP', 'snap-start.png', threshold=0.6, duration=3)
+        find_and_click_continuous('SNAP', 'snap-start2.png', threshold=0.6, duration=3)
         gap(20)
     for i in range(5):
         pyautogui.click() # 防止遇到新卡
